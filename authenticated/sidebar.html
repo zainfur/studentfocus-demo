@@ -1,0 +1,54 @@
+<aside class="sidebar">
+    <div class="sidebar-brand" onclick="window.location.href='../index.html'">
+        <i data-lucide="layers" class="icon-blue"></i>
+        <span>StudentFocus</span>
+    </div>
+
+    <nav style="flex: 1;">
+        <a href="./dashboard.html" class="nav-item">
+            <i data-lucide="home" class="icon-sm"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="./settings.html" class="nav-item">
+            <i data-lucide="settings" class="icon-sm"></i>
+            <span>Settings</span>
+        </a>
+        <a href="./billing.html" class="nav-item">
+            <i data-lucide="credit-card" class="icon-sm"></i>
+            <span>Billing</span>
+        </a>
+
+        <div class="nav-group-label">Modules</div>
+        <div id="sidebar-modules-list"></div>
+        
+        <button onclick="openModal()" class="nav-item" style="width: 100%; border: none; background: none; margin-top: 8px; color: var(--notion-secondary); text-align: left;">
+            <i data-lucide="plus" class="icon-sm"></i>
+            <span>New Module</span>
+        </button>
+    </nav>
+
+    <div class="sidebar-footer">
+        <a href="../login.html" class="nav-item">
+            <i data-lucide="log-out" class="icon-sm"></i>
+            <span>Log out</span>
+        </a>
+    </div>
+</aside>
+
+<div id="module-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-card">
+        <h2 style="margin-bottom: 24px;">Create New Module</h2>
+        <div class="field">
+            <label>Module Name</label>
+            <input type="text" id="module-name" placeholder="e.g. Computer Science">
+        </div>
+        <div class="field">
+            <label>Description</label>
+            <input type="text" id="module-desc" placeholder="Brief overview...">
+        </div>
+        <div class="cta-row" style="margin-top: 32px; display: flex; justify-content: flex-end; gap: 12px;">
+            <button onclick="closeModal()" class="nav-item" style="background: none; border: none; width: auto;">Cancel</button>
+            <button onclick="addModule()" class="btn-blue" style="padding: 10px 24px; border-radius: 6px;">Create Module</button>
+        </div>
+    </div>
+</div>

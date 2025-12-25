@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | StudentFocus</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body style="background-color: #f7f7f5; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
+
+    <div class="login-card">
+        <div style="display: flex; justify-content: center; margin-bottom: 24px;">
+            <a href="index.html" style="color: var(--brand-blue);">
+                <i data-lucide="book-open" style="width: 40px; height: 40px;"></i>
+            </a>
+        </div>
+
+        <h2 style="text-align: center; font-size: 24px; font-weight: 700; margin-bottom: 32px; letter-spacing: -0.02em;">
+            Log in to StudentFocus
+        </h2>
+
+        <button class="pill" style="width: 100%; border: 1px solid var(--notion-border); display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; margin-bottom: 20px; font-size: 14px;">
+            <img src="https://www.google.com/favicon.ico" style="width: 16px; height: 16px;"> 
+            Continue with Google
+        </button>
+
+        <div class="divider">
+            <div class="divider-line"></div>
+            <span style="padding: 0 16px; color: #9ca3af; font-size: 10px; font-weight: 700;">OR</span>
+            <div class="divider-line"></div>
+        </div>
+
+        <input type="email" placeholder="Email address" style="margin-bottom: 12px;">
+        <input type="password" placeholder="Password" style="margin-bottom: 12px;">
+
+        <div style="text-align: right; margin-bottom: 24px;">
+            <a href="forgotten.html" style="font-size: 12px; color: var(--brand-blue);">Forgot password?</a>
+        </div>
+
+        <a href="authenticated/dashboard.html" class="btn-primary" style="display: block; width: 100%; text-align: center;">
+            Continue
+        </a>
+
+        <div style="margin-top: 24px; text-align: center; font-size: 14px;">
+            <span style="color: var(--notion-secondary);">Don't have an account?</span>
+            <a href="signup.html" style="color: var(--brand-blue); font-weight: 600; margin-left: 4px;">Sign up</a>
+        </div>
+
+        <p style="text-align: center; font-size: 11px; color: #9ca3af; margin-top: 32px; line-height: 1.5;">
+            By continuing, you agree to StudentFocus’s Terms of Service and Privacy Policy.
+        </p>
+    </div>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>

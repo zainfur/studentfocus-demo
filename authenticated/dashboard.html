@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | StudentFocus</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="../js/app.js" defer></script>
+</head>
+<body class="dashboard-wrapper">
+    <div id="sidebar-placeholder"></div>
+
+    <main class="main-content">
+        <div class="content-container">
+            <header class="dashboard-header">
+                <h1>My Modules</h1>
+                <p style="color: var(--notion-secondary);">Organize your classes and generate study materials.</p>
+            </header>
+
+            <div class="module-grid">
+                <div id="empty-state" style="grid-column: 1 / -1; text-align: center; padding: 60px 0;">
+                    <i data-lucide="layout" style="width: 48px; height: 48px; color: #EBEBE9; margin-bottom: 16px;"></i>
+                    <h2 style="color: var(--notion-secondary);">No modules yet</h2>
+                    <p style="color: var(--notion-secondary); margin-top: 8px;">Click "+ New Module" in the sidebar to get started.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

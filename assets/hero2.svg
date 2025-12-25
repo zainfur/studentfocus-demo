@@ -1,0 +1,195 @@
+<svg viewBox="0 0 1400 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#708090;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#4a90b8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#87ceeb;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="warmGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#ffaa00;stop-opacity:0.3" />
+    </linearGradient>
+    <filter id="softShadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+      <feOffset dx="2" dy="4" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="lightGlow">
+      <stop offset="0%" style="stop-color:#fff9e6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffeb99;stop-opacity:0" />
+    </radialGradient>
+    <filter id="blur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+    </filter>
+  </defs>
+  
+  <!-- Sky background (darker left, brighter right) -->
+  <rect width="1400" height="700" fill="url(#skyGradient)"/>
+  
+  <!-- LEFT SIDE: Distracted, unfocused learning -->
+  <g>
+    <!-- Cluttered desk with distractions -->
+    <g filter="url(#softShadow)">
+      <!-- Desk -->
+      <rect x="180" y="560" width="220" height="15" fill="#6b5744" rx="3"/>
+      <rect x="195" y="575" width="15" height="80" fill="#5a4839"/>
+      <rect x="370" y="575" width="15" height="80" fill="#5a4839"/>
+      
+      <!-- Chair -->
+      <rect x="140" y="530" width="60" height="70" fill="#8b6f6f" rx="6"/>
+      <rect x="145" y="600" width="50" height="15" fill="#8b6f6f" rx="3"/>
+      
+      <!-- Distracted student (looking away, unfocused) -->
+      <ellipse cx="220" cy="500" rx="35" ry="40" fill="#d4a574"/> <!-- Head -->
+      <ellipse cx="220" cy="490" rx="30" ry="25" fill="#8b4513"/> <!-- Hair -->
+      <!-- Eyes looking to side (distracted) -->
+      <circle cx="210" cy="495" r="4" fill="#2c1810"/>
+      <circle cx="226" cy="495" r="4" fill="#2c1810"/>
+      <circle cx="208" cy="495" r="2" fill="#fff"/> <!-- Looking left -->
+      <circle cx="224" cy="495" r="2" fill="#fff"/>
+      <path d="M 210 510 Q 220 508 230 510" stroke="#2c1810" stroke-width="2" fill="none"/> <!-- Uncertain mouth -->
+      
+      <!-- Body slouched -->
+      <rect x="195" y="535" width="50" height="60" fill="#7a8b99" rx="8" transform="rotate(-5 220 565)"/>
+      
+      <!-- Messy desk with distractions -->
+      <!-- Phone with notifications -->
+      <rect x="280" y="540" width="45" height="65" fill="#2c2c2c" rx="6"/>
+      <rect x="285" y="545" width="35" height="55" fill="#4a90b8" rx="3"/>
+      <circle cx="302" cy="557" r="4" fill="#ff4444"/> <!-- Notification dot -->
+      <circle cx="310" cy="557" r="4" fill="#ff4444"/>
+      <circle cx="318" cy="557" r="4" fill="#ff4444"/>
+      
+      <!-- Snacks -->
+      <ellipse cx="350" cy="555" rx="25" ry="20" fill="#8b4513"/> <!-- Bowl -->
+      <circle cx="345" cy="548" r="6" fill="#ffd700"/> <!-- Chips -->
+      <circle cx="355" cy="548" r="6" fill="#ffd700"/>
+      <circle cx="350" cy="542" r="6" fill="#ffd700"/>
+      
+      <!-- Multiple tabs/books (too many things open) -->
+      <rect x="200" y="545" width="60" height="8" fill="#c85a54" rx="2"/>
+      <rect x="205" y="538" width="60" height="8" fill="#8b6f47" rx="2"/>
+      <rect x="210" y="531" width="60" height="8" fill="#4a7c59" rx="2"/>
+      
+      <!-- Scattered papers -->
+      <rect x="150" y="540" width="35" height="45" fill="#f0e6d2" rx="2" transform="rotate(-15 167 562)"/>
+      <rect x="330" y="520" width="30" height="40" fill="#f0e6d2" rx="2" transform="rotate(20 345 540)"/>
+    </g>
+    
+    <!-- Floating distractions around student -->
+    <g opacity="0.6">
+      <!-- Social media icon -->
+      <circle cx="120" cy="400" r="30" fill="#4a90b8"/>
+      <path d="M 110 395 L 115 405 L 130 390" stroke="#fff" stroke-width="3" fill="none"/>
+      
+      <!-- Video game controller -->
+      <rect x="300" y="380" width="70" height="40" fill="#5a5a5a" rx="8"/>
+      <circle cx="320" cy="400" r="8" fill="#8b8b8b"/>
+      <circle cx="350" cy="395" r="6" fill="#ff4444"/>
+      <circle cx="365" cy="395" r="6" fill="#4444ff"/>
+      
+      <!-- TV/Video -->
+      <rect x="80" cy="480" width="60" height="45" fill="#2c2c2c" rx="4"/>
+      <polygon points="105,495 105,515 125,505" fill="#ff4444"/> <!-- Play button -->
+      
+      <!-- Chat bubbles -->
+      <ellipse cx="340" cy="460" rx="25" ry="20" fill="#90ee90"/>
+      <circle cx="360" cy="470" r="8" fill="#90ee90"/>
+      <circle cx="368" cy="475" r="5" fill="#90ee90"/>
+    </g>
+    
+    <!-- Question marks (confusion) -->
+    <text x="260" y="460" font-family="Arial" font-size="40" fill="#6b6b6b" opacity="0.5">?</text>
+    <text x="150" y="520" font-family="Arial" font-size="35" fill="#6b6b6b" opacity="0.5">?</text>
+  </g>
+  
+  <!-- RIGHT SIDE: Focused, happy learning -->
+  <g>
+    <!-- Window with warm, bright light -->
+    <rect x="1050" y="80" width="280" height="320" fill="#8b6f47" rx="8"/>
+    <rect x="1070" y="100" width="240" height="280" fill="#87ceeb" rx="4"/>
+    <line x1="1190" y1="100" x2="1190" y2="380" stroke="#8b6f47" stroke-width="8"/>
+    <line x1="1070" y1="240" x2="1310" y2="240" stroke="#8b6f47" stroke-width="8"/>
+    
+    <!-- Bright warm glow from window -->
+    <ellipse cx="1190" cy="240" rx="200" ry="180" fill="url(#warmGlow)" opacity="0.7"/>
+    
+    <!-- Sunny sky through window -->
+    <circle cx="1150" cy="160" r="35" fill="#ffd700" opacity="0.8"/>
+    
+    <!-- Happy, focused student -->
+    <g filter="url(#softShadow)">
+      <!-- Clean, organized desk -->
+      <rect x="1000" y="560" width="220" height="15" fill="#8b6f47" rx="3"/>
+      <rect x="1015" y="575" width="15" height="80" fill="#6b5744"/>
+      <rect x="1190" y="575" width="15" height="80" fill="#6b5744"/>
+      
+      <!-- Comfortable chair -->
+      <rect x="960" y="530" width="60" height="70" fill="#4a7c59" rx="6"/>
+      <rect x="965" y="600" width="50" height="15" fill="#4a7c59" rx="3"/>
+      
+      <!-- Student (engaged and happy) -->
+      <ellipse cx="1040" cy="500" rx="35" ry="40" fill="#d4a574"/> <!-- Head -->
+      <ellipse cx="1040" cy="488" rx="32" ry="28" fill="#8b4513"/> <!-- Hair -->
+      
+      <!-- Eyes focused forward and happy -->
+      <circle cx="1032" cy="498" r="4" fill="#2c1810"/>
+      <circle cx="1048" cy="498" r="4" fill="#2c1810"/>
+      <circle cx="1033" cy="497" r="2" fill="#fff"/> <!-- Bright eyes -->
+      <circle cx="1049" cy="497" r="2" fill="#fff"/>
+      
+      <!-- Big smile -->
+      <path d="M 1028 512 Q 1040 520 1052 512" stroke="#2c1810" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      
+      <!-- Body sitting upright -->
+      <rect x="1015" y="535" width="50" height="60" fill="#e67e50" rx="8"/>
+      
+      <!-- Single open book (focused on one thing) -->
+      <path d="M 1070 565 L 1070 595 L 1115 595 L 1115 565 Z" fill="#f0e6d2"/>
+      <path d="M 1115 565 L 1115 595 L 1160 595 L 1160 565 Z" fill="#f0e6d2"/>
+      <line x1="1115" y1="565" x2="1115" y2="595" stroke="#c85a54" stroke-width="4"/>
+      <!-- Text lines on book -->
+      <line x1="1080" y1="575" x2="1108" y2="575" stroke="#4a90b8" stroke-width="2" opacity="0.5"/>
+      <line x1="1080" y1="583" x2="1108" y2="583" stroke="#4a90b8" stroke-width="2" opacity="0.5"/>
+      <line x1="1122" y1="575" x2="1150" y2="575" stroke="#4a90b8" stroke-width="2" opacity="0.5"/>
+      <line x1="1122" y1="583" x2="1150" y2="583" stroke="#4a90b8" stroke-width="2" opacity="0.5"/>
+      
+      <!-- Coffee/tea cup (comfortable learning) -->
+      <ellipse cx="1180" cy="560" rx="15" ry="8" fill="#8b4513"/>
+      <path d="M 1165 560 L 1170 535 L 1190 535 L 1195 560" fill="#d2691e"/>
+      <ellipse cx="1180" cy="540" rx="10" ry="6" fill="#6b4423"/>
+      <!-- Steam -->
+      <path d="M 1175 530 Q 1173 520 1175 515" stroke="#a0a0a0" stroke-width="2" fill="none" opacity="0.5"/>
+      <path d="M 1185 530 Q 1187 520 1185 515" stroke="#a0a0a0" stroke-width="2" fill="none" opacity="0.5"/>
+    </g>
+    
+    <!-- Positive learning elements floating -->
+    <g opacity="0.8">
+      <!-- Lightbulb (ideas!) -->
+      <circle cx="1250" cy="460" r="28" fill="#ffd700"/>
+      <circle cx="1250" cy="460" r="20" fill="#fff9e6"/>
+      <rect x="1242" y="488" width="16" height="10" fill="#ffd700" rx="2"/>
+      <line x1="1250" y1="432" x2="1250" y2="418" stroke="#ffd700" stroke-width="3" stroke-linecap="round"/>
+      <line x1="1280" y1="445" x2="1292" y2="433" stroke="#ffd700" stroke-width="3" stroke-linecap="round"/>
+      <line x1="1220" y1="445" x2="1208" y2="433" stroke="#ffd700" stroke-width="3" stroke-linecap="round"/>
+      
+      <!-- Check marks (understanding) -->
+      <path d="M 1280 380 L 1290 395 L 1315 365" stroke="#4ade80" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M 920 420 L 928 432 L 948 408" stroke="#4ade80" stroke-width="4" fill="none" stroke-linecap="round"/>
+      
+      <!-- Stars (success) -->
+      <polygon points="1300,520 1305,535 1320,537 1310,547 1313,562 1300,554 1287,562 1290,547 1280,537 1295,535" fill="#ffd700"/>
+      <polygon points="950,480 954,492 966,493 957,501 960,513 950,507 940,513 943,501 934,493 946,492" fill="#ffd700"/>
+    </g>
+    
+    <!-- Progress indicator -->
+    <rect x="1010" y="520" width="100" height="12" fill="#e0e0e0" rx="6"/>
+    <rect x="1010" y="520" width="75" height="12" fill="#4ade80" rx="6"/>
+  </g>
+</svg>

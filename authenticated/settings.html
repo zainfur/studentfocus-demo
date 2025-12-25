@@ -1,0 +1,48 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Settings | StudentFocus</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="../js/app.js?v=2" defer></script> 
+</head>
+
+<body class="dashboard-wrapper">
+    <div id="sidebar-placeholder"></div>
+    
+    <main class="main-content">
+    
+
+<div class="content-container">
+    <header class="dashboard-header">
+        <h1>Settings</h1>
+        <p style="color: var(--notion-secondary);">Manage your profile and account security.</p>
+    </header>
+
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+        <div class="module-card">
+            <h3 style="margin-bottom: 20px;">Personal Information</h3>
+            <div style="display: flex; flex-direction: column; gap: 16px; max-width: 400px;">
+                <div class="field">
+                    <label style="font-size: 12px; font-weight: 600; color: var(--notion-secondary);">Full Name</label>
+                    <input type="text" value="John Doe" style="padding: 10px; border: 1px solid var(--notion-border); border-radius: 6px;">
+                </div>
+                <div class="field">
+                    <label style="font-size: 12px; font-weight: 600; color: var(--notion-secondary);">Email Address</label>
+                    <input type="email" value="john@example.com" style="padding: 10px; border: 1px solid var(--notion-border); border-radius: 6px;">
+                </div>
+                <button class="btn-primary" style="width: fit-content; margin-top: 8px;">Save Changes</button>
+            </div>
+        </div>
+
+        <div class="module-card">
+            <h3 style="margin-bottom: 8px;">Security</h3>
+            <p style="font-size: 14px; color: var(--notion-secondary); margin-bottom: 20px;">Protect your account with a strong password.</p>
+            <button class="nav-item" style="width: fit-content; border: 1px solid var(--notion-border); justify-content: center;">Change Password</button>
+        </div>
+    </div>
+</div>
+    </main>
+</body> 

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up | StudentFocus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body style="background-color: #f7f7f5; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px 0;">
+
+    <div class="login-card">
+        <div style="display: flex; justify-content: center; margin-bottom: 24px;">
+            <a href="index.html" style="color: var(--brand-blue);">
+                <i data-lucide="book-open" style="width: 40px; height: 40px;"></i>
+            </a>
+        </div>
+
+        <h2 style="text-align: center; font-size: 24px; font-weight: 700; margin-bottom: 32px; letter-spacing: -0.02em;">
+            Create your account
+        </h2>
+
+        <button class="pill" style="width: 100%; border: 1px solid var(--notion-border); display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; margin-bottom: 20px; font-size: 14px; background: white;">
+            <img src="https://www.google.com/favicon.ico" style="width: 16px; height: 16px;"> 
+            Sign up with Google
+        </button>
+
+        <div class="divider">
+            <div class="divider-line"></div>
+            <span style="padding: 0 16px; color: #9ca3af; font-size: 10px; font-weight: 700;">OR</span>
+            <div class="divider-line"></div>
+        </div>
+
+        <div class="field">
+            <label for="name">Full Name</label>
+            <input id="name" type="text" placeholder="Enter your name" style="margin-bottom: 12px;">
+        </div>
+
+        <div class="field">
+            <label for="email">Email address</label>
+            <input id="email" type="email" placeholder="name@example.com" style="margin-bottom: 12px;">
+        </div>
+
+        <div class="field">
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Create a password" style="margin-bottom: 24px;">
+        </div>
+
+        <a href="authenticated/dashboard.html" class="btn-primary" style="display: block; width: 100%; text-align: center;">
+            Create account
+        </a>
+
+        <div style="margin-top: 24px; text-align: center; font-size: 14px;">
+            <span style="color: var(--notion-secondary);">Already have an account?</span>
+            <a href="login.html" style="color: var(--brand-blue); font-weight: 600; margin-left: 4px;">Log in</a>
+        </div>
+
+        <p style="text-align: center; font-size: 11px; color: #9ca3af; margin-top: 32px; line-height: 1.5;">
+            By signing up, you agree to StudentFocus’s <a href="#" style="text-decoration: underline;">Terms of Service</a> and <a href="#" style="text-decoration: underline;">Privacy Policy</a>.
+        </p>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

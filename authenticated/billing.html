@@ -1,0 +1,60 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Settings | StudentFocus</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="../js/app.js?v=2" defer></script> 
+</head>
+
+<body class="dashboard-wrapper">
+    <div id="sidebar-placeholder"></div>
+    
+    <main class="main-content">
+<div class="content-container">
+    <header class="dashboard-header">
+        <h1>Billing</h1>
+        <p style="color: var(--notion-secondary);">Manage your subscription and invoices.</p>
+    </header>
+
+    <div class="module-card" style="margin-bottom: 24px; border-left: 4px solid var(--brand-blue);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+                <span style="font-size: 12px; font-weight: 700; color: var(--brand-blue); text-transform: uppercase;">Current Plan</span>
+                <h3 style="margin: 4px 0;">Pro Plan — $19/mo</h3>
+                <p style="font-size: 13px; font-weight: 500;">Next payment: Jan 25, 2026</p>
+            </div>
+            <button style="color: #ef4444; background: none; border: none; font-size: 13px; font-weight: 600; cursor: pointer;">Cancel Subscription</button>
+        </div>
+    </div>
+
+    <div class="module-card">
+        <h3 style="margin-bottom: 20px;">Payment History</h3>
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+            <thead>
+                <tr style="border-bottom: 1px solid var(--notion-border); color: var(--notion-secondary); text-align: left;">
+                    <th style="padding: 12px 8px;">Date</th>
+                    <th style="padding: 12px 8px;">Plan</th>
+                    <th style="padding: 12px 8px;">Amount</th>
+                    <th style="padding: 12px 8px; text-align: right;">Invoice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="border-bottom: 1px solid #f9f9f9;">
+                    <td style="padding: 12px 8px;">Dec 25, 2025</td>
+                    <td style="padding: 12px 8px;">Pro Monthly</td>
+                    <td style="padding: 12px 8px;">$19.00</td>
+                    <td style="padding: 12px 8px; text-align: right;">
+                        <button style="background:none; border:none; color: var(--brand-blue); cursor:pointer; font-size: 12px;">
+                            <i data-lucide="download" style="width:14px; vertical-align:middle;"></i> PDF
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+    </main>
+</body> 
