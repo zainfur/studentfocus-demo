@@ -63,45 +63,53 @@ function addModule() {
     const nameEl = document.getElementById('module-name');
     const descEl = document.getElementById('module-desc');
     
-    if (!nameEl.value) return alert("Please enter a name");
+    if (!nameEl || !nameEl.value) return alert("Please enter a name");
 
-    // Check if we are currently on the dashboard
+    // 1. Check if we are on the dashboard
     const isDashboard = window.location.pathname.includes('dashboard.html');
-
     if (!isDashboard) {
-        // Option A: Just redirect to dashboard to create it there
         window.location.href = './dashboard.html';
         return;
     }
 
-    // Existing Dashboard logic (only runs if on dashboard.html)
+    const cardId = 'module-' + Date.now();
+    
+    // 2. Add to Dashboard Grid
     const grid = document.querySelector('.module-grid');
     const emptyState = document.getElementById('empty-state');
     if (emptyState) emptyState.remove();
 
-    const cardId = 'module-' + Date.now();
-    const newCard = document.createElement('div');
-    newCard.className = 'module-card';
-    newCard.id = cardId;
-    
-    newCard.innerHTML = `
-        <button class="delete-btn" onclick="removeModule('${cardId}')">
-            <i data-lucide="x" class="icon-sm"></i>
-        </button>
-        <div class="module-icon"><i data-lucide="book"></i></div>
-        <h3>${nameEl.value}</h3>
-        <p class="module-description">${descEl.value || 'No description provided.'}</p>
-        <div class="module-stats">
-            <span>0 Classes</span> | <span>0 Summaries</span>
-        </div>
-        <button class="btn-primary" style="margin-top: auto; width: fit-content; padding: 6px 12px; font-size: 12px;">
-            View Classes
-        </button>
-    `;
+    if (grid) {
+        const newCard = document.createElement('div');
+        newCard.className = 'module-card';
+        newCard.id = cardId;
+        newCard.innerHTML = `
+            <button class="delete-btn" onclick="removeModule('${cardId}')"><i data-lucide="x" class="icon-sm"></i></button>
+            <div class="module-icon"><i data-lucide="book"></i></div>
+            <h3>${nameEl.value}</h3>
+            <p class="module-description">${descEl.value || 'No description provided.'}</p>
+            <div class="module-stats"><span>0 Classes</span> | <span>0 Summaries</span></div>
+            <button class="btn-primary" style="margin-top: auto; width: fit-content; padding: 6px 12px; font-size: 12px;">View Classes</button>
+        `;
+        grid.appendChild(newCard);
+    }
 
-    grid.appendChild(newCard);
+    // 3. Add to Sidebar (The specific fix for your sidebar structure)
+    const sidebarList = document.getElementById('sidebar-modules-list');
+    if (sidebarList) {
+        const sideItem = document.createElement('a');
+        sideItem.href = "#";
+        sideItem.className = "nav-item";
+        sideItem.setAttribute('data-id', cardId); // Linked for the removeModule function
+        sideItem.innerHTML = `
+            <i data-lucide="book" class="icon-sm"></i>
+            <span>${nameEl.value}</span>
+        `;
+        sidebarList.appendChild(sideItem);
+    }
+
     closeModal();
-    lucide.createIcons();
+    if (window.lucide) lucide.createIcons();
     nameEl.value = '';
     descEl.value = '';
 }
