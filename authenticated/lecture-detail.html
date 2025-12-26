@@ -13,39 +13,113 @@
 
     <main class="main-content">
         <div class="content-container">
-            <header class="dashboard-header">
+            
+            <header class="dashboard-header" style="margin-bottom: 32px;">
                 <a href="lectures.html" style="font-size: 12px; color: var(--brand-blue); display: flex; align-items: center; gap: 4px; margin-bottom: 8px;">
                     <i data-lucide="arrow-left" class="icon-sm"></i> Back to Lectures
                 </a>
-                <h1>Lecture Detail</h1>
+                <h1>Lecture Resources</h1>
+                <p style="color: var(--notion-secondary);">Link sources and upload materials to generate your study suite.</p>
             </header>
 
-            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
-                <div>
-                    <div class="module-card" style="margin-bottom: 24px;">
-                        <h3>Revision Podcast</h3>
-                        <div style="background: #F7F7F5; padding: 20px; border-radius: 8px; display: flex; align-items: center; gap: 16px; margin-top: 16px;">
-                            <button class="btn-blue" style="border-radius: 50%; width: 40px; height: 40px; padding: 0;"><i data-lucide="play"></i></button>
-                            <div style="flex: 1; height: 4px; background: #EBEBE9; border-radius: 2px;"></div>
-                        </div>
+            <div style="display: flex; flex-direction: column; gap: 24px; margin-bottom: 48px;">
+                
+                <div class="module-card" style="padding: 24px;">
+                    <h3 style="font-size: 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                        <i data-lucide="youtube" class="icon-blue" style="color: #FF0000;"></i> YouTube Lecture
+                    </h3>
+                    <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+                        <input type="text" id="yt-url" placeholder="Paste YouTube video link here..." style="flex: 1; padding: 10px 14px; border: 1px solid var(--notion-border); border-radius: 8px; font-size: 14px;">
+                        <button class="btn-blue" onclick="addYoutubeVideo()" style="padding: 10px 24px;">Add Link</button>
                     </div>
-
-                    <div class="module-card">
-                        <h3>Flashcards</h3>
-                        <div style="border: 1px solid var(--notion-border); border-radius: 8px; height: 200px; display: flex; align-items: center; justify-content: center; margin-top: 16px;">
-                            <p style="color: var(--notion-secondary);">Flashcard Content</p>
+                    <div id="yt-list" style="display: flex; flex-direction: column; gap: 8px;">
                         </div>
-                    </div>
                 </div>
 
-                <div class="module-card" style="height: fit-content;">
-                    <h3>Glossary</h3>
-                    <div style="margin-top: 16px; color: var(--notion-secondary); font-size: 14px;">
-                        <p>Key terms will appear here.</p>
+                <div class="module-card" style="padding: 24px;">
+                    <h3 style="font-size: 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                        <i data-lucide="file-up" class="icon-blue"></i> Lecture Documents & Slides
+                    </h3>
+                    <div style="border: 2px dashed var(--notion-border); border-radius: 12px; padding: 32px; text-align: center; margin-bottom: 20px; background: #FAFAFA;">
+                        <input type="file" id="doc-upload" hidden multiple onchange="addDocument(event)">
+                        <button class="pill" onclick="document.getElementById('doc-upload').click()" style="background: white; border: 1px solid var(--notion-border); padding: 10px 20px; font-weight: 600;">
+                            Browse Files
+                        </button>
+                        <p style="font-size: 12px; color: var(--notion-secondary); margin-top: 10px;">Supported: PDF, PPTX, DOCX, TXT</p>
                     </div>
+                    <div id="doc-list" style="display: flex; flex-direction: column; gap: 10px;">
+                        </div>
                 </div>
             </div>
-        </div>
+
+            <section style="text-align: center; margin-bottom: 48px; padding: 40px; background: #F9F9F8; border-radius: 12px; border: 1px solid var(--notion-border);">
+                <div id="generate-prompt">
+                    <h3 style="margin-bottom: 8px;">Ready to generate your Revision Suite?</h3>
+                    <p style="color: var(--notion-secondary); font-size: 14px; margin-bottom: 24px;">AI will analyze your connected resources to build your study tools.</p>
+                    <button class="btn-blue" onclick="startGeneration()" style="padding: 12px 32px; font-size: 16px;">
+                        <i data-lucide="sparkles" class="icon-sm" style="margin-right: 8px;"></i> Generate Artefacts
+                    </button>
+                </div>
+
+                <div id="generate-loading" style="display: none;">
+                    <h3 style="margin-bottom: 16px;">Generating Revision Suite...</h3>
+                    <div style="width: 100%; max-width: 400px; height: 8px; background: #EBEBE9; border-radius: 4px; margin: 0 auto 16px; overflow: hidden;">
+                        <div id="progress-fill" style="width: 0%; height: 100%; background: var(--brand-blue); transition: width 0.3s ease;"></div>
+                    </div>
+                    <p id="loading-status" style="font-size: 13px; color: var(--brand-blue); font-weight: 500;">Initializing AI engine...</p>
+                </div>
+            </section>
+
+            <div id="artefacts-container" style="display: none; opacity: 0; transition: opacity 0.8s ease;">
+                <h2 style="font-size: 20px; margin-bottom: 24px; border-bottom: 1px solid var(--notion-border); padding-bottom: 12px;">Generated Artefacts</h2>
+                
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+                    <div style="display: flex; flex-direction: column; gap: 24px;">
+                        <div class="module-card" style="padding: 24px;">
+                            <h3 style="font-size: 17px; margin-bottom: 8px;">Revision Podcast</h3>
+                            <p style="font-size: 13px; color: var(--notion-secondary); margin-bottom: 20px;">AI-generated summary of all connected resources.</p>
+                            <div style="background: #F7F7F5; padding: 20px; border-radius: 12px; display: flex; align-items: center; gap: 16px;">
+                                <button class="btn-blue" style="border-radius: 50%; width: 44px; height: 44px; padding: 0;"><i data-lucide="play"></i></button>
+                                <div style="flex: 1; height: 4px; background: #EBEBE9; border-radius: 2px;">
+                                    <div style="width: 30%; height: 100%; background: var(--brand-blue); border-radius: 2px;"></div>
+                                </div>
+                                <span style="font-size: 12px; font-weight: 500;">12:45</span>
+                            </div>
+                        </div>
+
+                        <div class="module-card" style="padding: 24px;">
+                            <h3 style="font-size: 17px; margin-bottom: 16px;">Revision Flashcards</h3>
+                            <div style="border: 1px solid var(--notion-border); border-radius: 12px; height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #fff; box-shadow: inset 0 0 10px rgba(0,0,0,0.02);">
+                                <p style="font-weight: 500; font-size: 16px; text-align: center; padding: 0 40px; line-height: 1.5;">How does the core concept apply to real-world scenarios?</p>
+                                <button class="pill" style="margin-top: 24px; border: 1px solid var(--notion-border); font-size: 13px;">Reveal Answer</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="module-card" style="height: fit-content; padding: 24px;">
+                        <h3 style="font-size: 17px; margin-bottom: 16px;">Glossary of Terms</h3>
+                        <div style="display: flex; flex-direction: column; gap: 20px;">
+                            <div style="font-size: 14px;">
+                                <strong style="display: block; margin-bottom: 4px; color: var(--brand-blue);">Technical Term A</strong>
+                                <span style="color: var(--notion-secondary); line-height: 1.4;">A precise definition extracted from your uploaded documents.</span>
+                            </div>
+                            <div style="font-size: 14px;">
+                                <strong style="display: block; margin-bottom: 4px; color: var(--brand-blue);">Technical Term B</strong>
+                                <span style="color: var(--notion-secondary); line-height: 1.4;">Contextual explanation found within the YouTube lecture.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> </div>
     </main>
+
+    <script>
+        // Local initialization for this page
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof renderResources === "function") {
+                renderResources();
+            }
+        });
+    </script>
 </body>
 </html>

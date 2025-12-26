@@ -292,3 +292,133 @@ function resetDemo() {
         window.location.href = 'dashboard.html';
     }
 }
+
+// --- LECTURE RESOURCE MANAGEMENT ---
+
+function addDocument(event) {
+    const files = event.target.files;
+    if (!files.length) return;
+
+    const docs = getData('sf_lecture_docs');
+    const now = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+
+    for (let file of files) {
+        docs.push({
+            id: 'doc-' + Date.now() + Math.random(),
+            name: file.name,
+            date: now
+        });
+    }
+
+    saveData('sf_lecture_docs', docs);
+    renderResources();
+}
+
+function addYoutubeVideo() {
+    const urlEl = document.getElementById('yt-url');
+    if (!urlEl.value) return alert("Please paste a YouTube link");
+
+    const videos = getData('sf_lecture_yt');
+    
+    // Simple mock title logic
+    const mockTitles = ["Core Lecture: Introduction", "Advanced Concepts Deep Dive", "Weekly Session Summary"];
+    const randomTitle = mockTitles[Math.floor(Math.random() * mockTitles.length)];
+
+    videos.push({
+        id: 'yt-' + Date.now(),
+        title: randomTitle + " (" + (urlEl.value.split('v=')[1]?.substring(0, 5) || "Linked Video") + ")"
+    });
+
+    saveData('sf_lecture_yt', videos);
+    urlEl.value = '';
+    renderResources();
+}
+
+function renderResources() {
+    const docList = document.getElementById('doc-list');
+    const ytList = document.getElementById('yt-list');
+
+    if (docList) {
+        const docs = getData('sf_lecture_docs');
+        docList.innerHTML = docs.map(doc => `
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #FFFFFF; border-radius: 8px; border: 1px solid var(--notion-border);">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i data-lucide="file-text" class="icon-sm" style="color: var(--brand-blue);"></i>
+                    <div style="display: flex; flex-direction: column;">
+                        <span style="font-size: 14px; font-weight: 600;">${doc.name}</span>
+                        <span style="font-size: 11px; color: var(--notion-secondary);">Uploaded on ${doc.date}</span>
+                    </div>
+                </div>
+                <button onclick="removeResource('sf_lecture_docs', '${doc.id}')" style="background:none; border:none; color: #ef4444; cursor:pointer; padding: 4px;">
+                    <i data-lucide="trash-2" class="icon-sm"></i>
+                </button>
+            </div>
+        `).join('');
+    }
+
+    if (ytList) {
+        const videos = getData('sf_lecture_yt');
+        ytList.innerHTML = videos.map(vid => `
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #FFFFFF; border-radius: 8px; border: 1px solid var(--notion-border);">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i data-lucide="video" class="icon-sm" style="color: #FF0000;"></i>
+                    <span style="font-size: 14px; font-weight: 600;">${vid.title}</span>
+                </div>
+                <button onclick="removeResource('sf_lecture_yt', '${vid.id}')" style="background:none; border:none; color: #ef4444; cursor:pointer; padding: 4px;">
+                    <i data-lucide="trash-2" class="icon-sm"></i>
+                </button>
+            </div>
+        `).join('');
+    }
+
+    if (window.lucide) lucide.createIcons();
+}
+
+function removeResource(key, id) {
+    if (confirm("Remove this resource?")) {
+        const items = getData(key).filter(item => item.id !== id);
+        saveData(key, items);
+        renderResources();
+    }
+}
+
+// --- GENERATION SEQUENCE LOGIC ---
+
+function startGeneration() {
+    const prompt = document.getElementById('generate-prompt');
+    const loading = document.getElementById('generate-loading');
+    const progressFill = document.getElementById('progress-fill');
+    const statusText = document.getElementById('loading-status');
+    const artefacts = document.getElementById('artefacts-container');
+
+    // 1. Switch UI states
+    prompt.style.display = 'none';
+    loading.style.display = 'block';
+
+    const statuses = [
+        { p: 20, t: "Analyzing transcripts..." },
+        { p: 45, t: "Extracting key terminology..." },
+        { p: 70, t: "Synthesizing podcast script..." },
+        { p: 90, t: "Formatting flashcards..." },
+        { p: 100, t: "Finalizing Suite!" }
+    ];
+
+    let step = 0;
+    const interval = setInterval(() => {
+        if (step < statuses.length) {
+            progressFill.style.width = statuses[step].p + "%";
+            statusText.textContent = statuses[step].t;
+            step++;
+        } else {
+            clearInterval(interval);
+            // 2. Reveal the Artefacts
+            loading.style.display = 'none';
+            artefacts.style.display = 'block';
+            setTimeout(() => {
+                artefacts.style.opacity = '1';
+                // Scroll down to the results
+                artefacts.scrollIntoView({ behavior: 'smooth' });
+            }, 50);
+        }
+    }, 1200); // Adjust timing for the demo feel
+}
