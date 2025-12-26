@@ -13,16 +13,18 @@
 
     <main class="main-content">
         <div class="content-container">
-            <header class="dashboard-header">
-                <h1>My Modules</h1>
-                <p style="color: var(--notion-secondary);">Organize your classes and generate study materials.</p>
+            <header class="dashboard-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1>My Semesters</h1>
+                    <p style="color: var(--notion-secondary);">Your academic timeline.</p>
+                </div>
             </header>
 
-            <div class="module-grid">
+            <div class="module-grid" id="semester-grid">
                 <div id="empty-state" style="grid-column: 1 / -1; text-align: center; padding: 60px 0;">
-                    <i data-lucide="layout" style="width: 48px; height: 48px; color: #EBEBE9; margin-bottom: 16px;"></i>
-                    <h2 style="color: var(--notion-secondary);">No modules yet</h2>
-                    <p style="color: var(--notion-secondary); margin-top: 8px;">Click "+ New Module" in the sidebar to get started.</p>
+                    <i data-lucide="calendar" style="width: 48px; height: 48px; color: #EBEBE9; margin-bottom: 16px;"></i>
+                    <h2 style="color: var(--notion-secondary);">No semesters yet</h2>
+                    <p style="color: var(--notion-secondary); margin-top: 8px;">Add your first semester to start organizing modules.</p>
                 </div>
             </div>
         </div>
