@@ -154,7 +154,7 @@
     margin-bottom: 12px;
     /* Limit to 3 lines for visual consistency */
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;  
     overflow: hidden;
 }
