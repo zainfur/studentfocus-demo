@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lecture Detail | StudentFocus</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="../js/app.js" defer></script>
+</head>
+<body class="dashboard-wrapper">
+    <div id="sidebar-placeholder"></div>
+
+    <main class="main-content">
+        <div class="content-container">
+            <header class="dashboard-header">
+                <a href="lectures.html" style="font-size: 12px; color: var(--brand-blue); display: flex; align-items: center; gap: 4px; margin-bottom: 8px;">
+                    <i data-lucide="arrow-left" class="icon-sm"></i> Back to Lectures
+                </a>
+                <h1>Lecture Detail</h1>
+            </header>
+
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+                <div>
+                    <div class="module-card" style="margin-bottom: 24px;">
+                        <h3>Revision Podcast</h3>
+                        <div style="background: #F7F7F5; padding: 20px; border-radius: 8px; display: flex; align-items: center; gap: 16px; margin-top: 16px;">
+                            <button class="btn-blue" style="border-radius: 50%; width: 40px; height: 40px; padding: 0;"><i data-lucide="play"></i></button>
+                            <div style="flex: 1; height: 4px; background: #EBEBE9; border-radius: 2px;"></div>
+                        </div>
+                    </div>
+
+                    <div class="module-card">
+                        <h3>Flashcards</h3>
+                        <div style="border: 1px solid var(--notion-border); border-radius: 8px; height: 200px; display: flex; align-items: center; justify-content: center; margin-top: 16px;">
+                            <p style="color: var(--notion-secondary);">Flashcard Content</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="module-card" style="height: fit-content;">
+                    <h3>Glossary</h3>
+                    <div style="margin-top: 16px; color: var(--notion-secondary); font-size: 14px;">
+                        <p>Key terms will appear here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

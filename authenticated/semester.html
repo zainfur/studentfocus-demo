@@ -18,13 +18,19 @@
                     <a href="dashboard.html" style="font-size: 12px; color: var(--brand-blue); display: flex; align-items: center; gap: 4px; margin-bottom: 8px;">
                         <i data-lucide="arrow-left" class="icon-sm"></i> Back to Semesters
                     </a>
-                    <h1 id="semester-display-title">Current Semester</h1>
+                    <h1>Semester Modules</h1>
+                    <p style="color: var(--notion-secondary);">Manage the subjects for this term.</p>
                 </div>
                 <button class="btn-primary" onclick="openModal('module-modal')">+ New Module</button>
             </header>
 
             <div class="module-grid" id="module-grid">
+                <div id="empty-state" style="grid-column: 1 / -1; text-align: center; padding: 60px 0;">
+                    <i data-lucide="book" style="width: 48px; height: 48px; color: #EBEBE9; margin-bottom: 16px;"></i>
+                    <h2 style="color: var(--notion-secondary);">No modules yet</h2>
+                    <p style="color: var(--notion-secondary); margin-top: 8px;">Click "+ New Module" to start adding subjects.</p>
                 </div>
+            </div>
         </div>
     </main>
 

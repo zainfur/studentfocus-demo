@@ -27,6 +27,7 @@ function closeModal(id) {
     if (modal) modal.style.display = 'none';
 }
 
+// SEMESTER LOGIC
 function addSemester() {
     const nameEl = document.getElementById('sem-name');
     const startEl = document.getElementById('sem-start');
@@ -60,42 +61,24 @@ function addSemester() {
         const item = document.createElement('a');
         item.href = "semester.html";
         item.className = "nav-item";
-        item.setAttribute('data-id', semId); // Link for sidebar removal
+        item.setAttribute('data-id', semId);
         item.innerHTML = `<i data-lucide="calendar" class="icon-sm"></i><span>${nameEl.value}</span>`;
         sideList.appendChild(item);
     }
 
-    nameEl.value = '';
-    startEl.value = '';
-    endEl.value = '';
-    descEl.value = '';
-
+    nameEl.value = ''; startEl.value = ''; endEl.value = ''; descEl.value = '';
     closeModal('semester-modal');
     if (window.lucide) lucide.createIcons();
 }
 
 function removeSemester(id) {
-    if (confirm("Delete this semester and all its data?")) {
-        const card = document.getElementById(id);
-        if (card) card.remove();
-
+    if (confirm("Delete this semester?")) {
+        document.getElementById(id).remove();
         const sideItem = document.querySelector(`[data-id="${id}"]`);
         if (sideItem) sideItem.remove();
-
-        // Show empty state if grid is now empty
-        const grid = document.getElementById('semester-grid');
-        if (grid && grid.children.length === 0) {
-            grid.innerHTML = `
-                <div id="empty-state" style="grid-column: 1 / -1; text-align: center; padding: 60px 0;">
-                    <i data-lucide="calendar" style="width: 48px; height: 48px; color: #EBEBE9; margin-bottom: 16px;"></i>
-                    <h2 style="color: var(--notion-secondary);">No semesters yet</h2>
-                    <p style="color: var(--notion-secondary); margin-top: 8px;">Add your first semester to start organizing modules.</p>
-                </div>
-            `;
-            lucide.createIcons();
-        }
     }
 }
+
 
 function addModule() {
     const nameEl = document.getElementById('mod-name');
@@ -106,6 +89,9 @@ function addModule() {
     const modId = 'mod-' + Date.now();
     const grid = document.getElementById('module-grid');
     if (grid) {
+        const empty = document.getElementById('empty-state');
+        if (empty) empty.remove();
+        
         const card = document.createElement('div');
         card.className = 'module-card';
         card.id = modId;
@@ -114,14 +100,11 @@ function addModule() {
             <div class="module-icon"><i data-lucide="book"></i></div>
             <h3>${nameEl.value}</h3>
             <p class="module-description">${descEl.value || 'No description'}</p>
-            <button class="btn-primary" style="margin-top: auto;">View Classes</button>
+            <a href="lectures.html" class="btn-primary" style="margin-top: auto; width: 100%; text-align: center;">View Lectures</a>
         `;
         grid.appendChild(card);
     }
-
-    nameEl.value = '';
-    descEl.value = '';
-
+    nameEl.value = ''; descEl.value = '';
     closeModal('module-modal');
     if (window.lucide) lucide.createIcons();
 }
@@ -130,5 +113,52 @@ function removeModule(id) {
     if (confirm("Delete this module?")) {
         const card = document.getElementById(id);
         if (card) card.remove();
+
+        const grid = document.getElementById('module-grid');
+        if (grid && grid.children.length === 0) {
+            grid.innerHTML = `
+                <div id="empty-state" style="grid-column: 1 / -1; text-align: center; padding: 60px 0;">
+                    <i data-lucide="book" style="width: 48px; height: 48px; color: #EBEBE9; margin-bottom: 16px;"></i>
+                    <h2 style="color: var(--notion-secondary);">No modules yet</h2>
+                    <p style="color: var(--notion-secondary); margin-top: 8px;">Click "+ New Module" to start adding subjects.</p>
+                </div>
+            `;
+            lucide.createIcons();
+        }
     }
+}
+
+
+// LECTURE LOGIC
+function addLecture() {
+    const titleEl = document.getElementById('lecture-title');
+    const dateEl = document.getElementById('lecture-date');
+
+    if (!titleEl.value) return alert("Please enter a title");
+
+    const lecId = 'lec-' + Date.now();
+    const grid = document.getElementById('lecture-grid');
+    if (grid) {
+        const empty = document.getElementById('empty-state');
+        if (empty) empty.remove();
+        
+        const card = document.createElement('div');
+        card.className = 'module-card';
+        card.id = lecId;
+        card.innerHTML = `
+            <button class="delete-btn" onclick="removeLecture('${lecId}')"><i data-lucide="x" class="icon-sm"></i></button>
+            <div class="module-icon"><i data-lucide="mic"></i></div>
+            <h3>${titleEl.value}</h3>
+            <p class="module-description">${dateEl.value || 'No date'}</p>
+            <a href="lecture-detail.html" class="btn-primary" style="margin-top: auto; width: 100%; text-align: center;">Study Now</a>
+        `;
+        grid.appendChild(card);
+    }
+    titleEl.value = ''; dateEl.value = '';
+    closeModal('lecture-modal');
+    if (window.lucide) lucide.createIcons();
+}
+
+function removeLecture(id) {
+    if (confirm("Delete this lecture?")) document.getElementById(id).remove();
 }
